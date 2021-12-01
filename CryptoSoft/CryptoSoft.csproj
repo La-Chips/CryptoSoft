@@ -8,9 +8,8 @@
   <ItemGroup>
     <None Remove="System.Configuration" />
   </ItemGroup>
+
   <ItemGroup>
-    <Reference Include="System.Configuration">
-      <HintPath>..\..\..\Downloads\system.configuration\System.Configuration.dll</HintPath>
-    </Reference>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
   </ItemGroup>
 </Project>

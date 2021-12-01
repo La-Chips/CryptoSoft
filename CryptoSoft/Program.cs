@@ -10,8 +10,11 @@ namespace CryptoSoft
     {
         static void Main(string[] args)
         {
+            Program app = new Program();
+           string key = app.LoadKey();
+           
             if (args.Count() != 2)
-                Environment.Exit(-1);
+                Environment.Exit(0);
 
             
         }
@@ -19,8 +22,8 @@ namespace CryptoSoft
         public string LoadKey()
         {
 
-            var appSettings = ConfigurationManager.AppSettings;
-            return "";
+            string key = ConfigurationManager.AppSettings.Get("cipherKey");
+            return key;
 
         }
 
