@@ -5,4 +5,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Configuration">
+      <HintPath>..\..\..\Downloads\system.configuration\System.Configuration.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

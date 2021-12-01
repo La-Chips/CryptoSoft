@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Configuration;
-using System.Collections.Specialized;
+
 
 namespace CryptoSoft
 {
@@ -18,8 +18,8 @@ namespace CryptoSoft
 
         public string LoadKey()
         {
-            ConfigurationSettings
 
+            var appSettings = ConfigurationManager.AppSettings;
             return "";
 
         }
