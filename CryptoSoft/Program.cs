@@ -46,6 +46,9 @@ namespace CryptoSoft
         {
 
             string key = ConfigurationManager.AppSettings.Get("cipherKey");
+            if (key.Length < 64)
+                Environment.Exit(-1);
+
             return key;
 
         }
