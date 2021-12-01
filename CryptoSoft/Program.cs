@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Configuration;
-
+using System.Collections.Generic;
 
 namespace CryptoSoft
 {
@@ -10,13 +10,36 @@ namespace CryptoSoft
     {
         static void Main(string[] args)
         {
+            
+
+            if (args.Count() != 2 && false)
+                Environment.Exit(-1);
+
+            string source = args[0];
+            string target = args[1];
+
             Program app = new Program();
-           string key = app.LoadKey();
-           
-            if (args.Count() != 2)
-                Environment.Exit(0);
+            string key = app.LoadKey();
+
 
             
+            byte[] content = app.Cipher(source, key);
+
+            app.Save(target, content);
+
+            Environment.Exit(0);
+        }
+
+        private void Save(string path, byte[] content)
+        {
+            try
+            {
+                File.WriteAllBytes(path,content);
+            }
+            catch
+            {
+                Environment.Exit(-1);
+            }
         }
 
         public string LoadKey()
@@ -27,22 +50,33 @@ namespace CryptoSoft
 
         }
 
-        public FileInfo GetFile(string path)
+        public byte[] GetFileContent(string path)
         {
-            FileInfo file = new FileInfo(path);
-            if (!file.Exists)
+            try
+            {
+                return File.ReadAllBytes(path);
+            }
+            catch  {
                 Environment.Exit(-1);
-            return file;
+            }
+            return null;
         }
 
-        public string Cipher()
+        public byte[] Cipher(string path, string key)
         {
-            return "";
-        }
 
-        public string Uncipher()
-        {
-            return "";
+            byte[] file = this.GetFileContent(path);
+            List<Byte> cipher = new List<Byte>();
+
+            for(int i = 0; i< file.Length; i++)
+            {
+                byte a = file[i];
+                char b = key[i % key.Length];
+                byte result = (byte)(a ^ b);
+
+                cipher.Add(result);
+            }
+            return cipher.ToArray();
         }
 
 
